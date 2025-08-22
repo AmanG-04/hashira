@@ -11,7 +11,6 @@ function horner(array, x_scale, y_scale) {
    };
 }
 
-// initialize array
 function zeros(n) {
    var array = new Array(n);
    for (var i=n; i--;) {
@@ -32,16 +31,10 @@ function denominator(i, points) {
    return result;
 }
 
-// calculate coefficients for Li polynomial
 function interpolation_polynomial(i, points) {
    var coefficients = zeros(points.length);
-    // alert("Denominator " + i + ": " + denominator(i,points));
    coefficients[0] = 1/denominator(i,points);
-    console.log(coefficients[0]);
-    //new Array(points.length);
-   /*for (var s=points.length; s--;) {
-      coefficients[s] = 1/denominator(i,points);
-   }*/
+   console.log(coefficients[0]);
    var new_coefficients;
 
    for (var k = 0; k<points.length; k++) {
@@ -59,7 +52,6 @@ function interpolation_polynomial(i, points) {
    return coefficients;
 }
 
-// calculate coefficients of polynomial
 function Lagrange(points) {
    var polynomial = zeros(points.length);
    var coefficients;
@@ -71,11 +63,9 @@ function Lagrange(points) {
    }
    return polynomial;
 }
-// 1. Read and decode the roots from JSON file
 const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('data2.json', 'utf8'));
 
-// Decode the roots
 var myPoints = [];
 for (const key in data) {
     if (!isNaN(key)) {
@@ -88,14 +78,9 @@ for (const key in data) {
 
 console.log("Using decoded points:", myPoints);
 
-// 2. Calculate the polynomial coefficients
 var polynomialCoefficients = Lagrange(myPoints);
 
-// 3. The constant 'c' is the first element of the result
 var c_constant = polynomialCoefficients[0];
 
-// The 'polynomialCoefficients' array would look something like [17, -12, 3]
-// which represents the polynomial 3x² - 12x + 17.
-
 console.log("The calculated coefficients are: " + polynomialCoefficients);
-console.log("The constant 'c' is: " + c_constant); // This would log 17
+console.log("The constant 'c' is: " + c_constant); 
