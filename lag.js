@@ -65,9 +65,7 @@ function Lagrange(points) {
    var coefficients;
    for (var i=0; i<points.length; ++i) {
      coefficients = interpolation_polynomial(i, points);
-     //console.log(coefficients);
      for (var k=0; k<points.length; ++k) {
-       // console.log(points[k].y*coefficients[k]);
         polynomial[k] += points[i].y*coefficients[k];
      }
    }
@@ -75,7 +73,7 @@ function Lagrange(points) {
 }
 // 1. Read and decode the roots from JSON file
 const fs = require('fs');
-const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync('data2.json', 'utf8'));
 
 // Decode the roots
 var myPoints = [];
